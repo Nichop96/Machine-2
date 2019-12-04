@@ -27,11 +27,11 @@ if __name__ == '__main__':
         folder = "SOL_files"
         plans = utils.get_plans(folder)
         oneHot.init(plans, apn_list, cit_list, obj_list, loc_list, tru_list)
-        db = crea_istanze.crea(plans)
 
-        np.random.shuffle(db)
-        dim = int(0.8 * len(db))
-        train, test = db[:dim], db[dim:]
-        save_arrays.save(train, "training_set")
-        save_arrays.save(test, "test_set")
+        np.random.shuffle(plans)
+        dim = int(0.8 * len(plans))
+        train, test = plans[:dim], plans[dim:]
+        save_arrays.save(train, "train_plans")
+        save_arrays.save(test, "test_plans")
+
         print('dataset created')
