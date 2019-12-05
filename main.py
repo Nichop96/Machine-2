@@ -43,7 +43,7 @@ if __name__ == '__main__':
     else:
         name = sys.argv[1]
         model = load_model(name)
-        testing = open("mini_test", "rb")
+        testing = open("test_set", "rb")
         test = pickle.load(testing)
         test_x, test_y = neuralNet.split(test)
         res_y = model.predict(test_x)
