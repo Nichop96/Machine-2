@@ -24,7 +24,7 @@ if __name__ == '__main__':
         tru_list = na.natsorted(tru_list)
         loc_list = na.natsorted(loc_list)
 
-        folder = "SOL_files"
+        folder = "cb_problems"
         plans = utils.get_plans(folder)
         oneHot.init(plans, apn_list, cit_list, obj_list, loc_list, tru_list)
 

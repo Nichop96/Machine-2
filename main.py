@@ -30,9 +30,12 @@ if __name__ == '__main__':
         print(net.summary())
         history = net.fit(train_x, {'action_type': train_y[0], 'type1': train_y[1], 'param1': train_y[2], 'type2': train_y[3],
                                     'param2': train_y[4], 'type3': train_y[5], 'param3': train_y[6], 'type4': train_y[7], 'param4': train_y[8]},
-                                    batch_size=128, epochs=10, verbose=2, validation_split=0.1)
+                                    batch_size=128, epochs=60, verbose=2, validation_split=0.1)
 
         save_arrays.save(history, 'history')
+
+        print(net.evaluate(x=test_x, y={'action_type': test_y[0], 'type1': test_y[1], 'param1': test_y[2], 'type2': test_y[3],
+                                    'param2': test_y[4], 'type3': test_y[5], 'param3': test_y[6], 'type4': test_y[7], 'param4': test_y[8]}))
 
         net.save('model')
 
