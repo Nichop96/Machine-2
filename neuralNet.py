@@ -51,8 +51,8 @@ def get_net(dim):
     o8 = Dense(6, activation="softmax", name='type4')(d1)
     o9 = Dense(104, activation="softmax", name='param4')(d1)
     model = Model(input=input, outputs=[o1, o2, o3, o4, o5, o6, o7, o8, o9])
-    adam = keras.optimizers.Adam(learning_rate=0.1, beta_1=0.9, beta_2=0.999, amsgrad=False)
-    sgd = keras.optimizers.SGD(learning_rate=0.1)
+    adam = keras.optimizers.Adam(lr=0.1, beta_1=0.9, beta_2=0.999, amsgrad=False)
+    sgd = keras.optimizers.SGD(lr=0.1)
     model.compile(optimizer=sgd, loss='categorical_crossentropy')
     return model
 
