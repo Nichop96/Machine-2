@@ -51,6 +51,8 @@ def oneHotToVect(code, array):
     code = approximate(code)
     for i in range(len(code)):
         if code[i]==1:
+            if(i >= len(array)):
+                return "SBAGLIATO"
             return array[i]
     return -1
 
