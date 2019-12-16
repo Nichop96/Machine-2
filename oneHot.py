@@ -91,6 +91,28 @@ def oneHotActionToVect(code, apn_list, cit_list, obj_list, loc_list, tru_list):
         string += " " + oneHotObjectToVect(code[(len(ACTIONS)+((MAX_OBJECTS+len(TYPES_OBJECT))*i)) : (len(ACTIONS) + (MAX_OBJECTS+len(TYPES_OBJECT))*(i+1)-1)], apn_list, cit_list, obj_list, loc_list, tru_list) + " "
     return string
 
+def check_output_test(output, test, apn_list, cit_list, obj_list, loc_list, tru_list):
+    match= np.zeros(9)
+    if np.array_equal(approximate(output[:10]), approximate(test[:10])):
+        match[0] = 1
+    if np.array_equal(approximate(output[10: 16]), approximate(test[10: 16])):
+        match[1] = 1
+    if np.array_equal(approximate(output[16: 120]), approximate(test[16: 120])):
+        match[2] = 1
+    if np.array_equal(approximate(output[120: 126]), approximate(test[120: 126])):
+        match[3] = 1
+    if np.array_equal(approximate(output[126: 230]), approximate(test[126: 230])):
+        match[4] = 1
+    if np.array_equal(approximate(output[230: 236]), approximate(test[230: 236])):
+        match[5] = 1
+    if np.array_equal(approximate(output[236: 340]), approximate(test[236: 340])):
+        match[6] = 1
+    if np.array_equal(approximate(output[340: 346]), approximate(test[340: 346])):
+        match[7] = 1
+    if np.array_equal(approximate(output[346: 450]), approximate(test[346: 450])):
+        match[8] = 1
+    return match
+
 def oneHotAction(action, apn_list, cit_list, obj_list, loc_list, tru_list):
     array = split_name_action(action)
     code = oneHot(array[0], ACTIONS, NUMBER_ACTIONS)

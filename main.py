@@ -89,3 +89,35 @@ if __name__ == '__main__':
             print(oneHot.oneHotActionToVect(correct, apn_list, cit_list, obj_list, loc_list, tru_list))
             print('----------------------------------------------------------------------------------')
         print((k/len(l)*100))
+
+        numberFull = 0
+        num = 0
+        match = np.zeros(9)
+        for i in range(len(res_y[0])):
+            pred = np.array([])
+            correct = np.array([])
+            for j in range(len(test_y)):
+                pred = np.concatenate((pred, res_y[j][i][:]))
+                correct = np.concatenate((correct, test_y[j][i][:]))
+            tmp = oneHot.check_output_test(pred, correct, apn_list, cit_list, obj_list, loc_list, tru_list)
+            for i in range(len(match)):
+                match[i] += tmp[i]
+            a = 0
+            for i in range(len(tmp)):
+                a+=tmp[i]
+            if a == 9:
+                numberFull += 1
+            num+=1
+        print("Azione COMPLETA: " + str(numberFull / num))
+        print("Azione: " + str(match[0] / num))
+        print("Tipo oggetto 1: " + str(match[1] / num))
+        print("Numero oggetto 1: " + str(match[2] / num))
+        print("Tipo oggetto 2: " + str(match[3] / num))
+        print("Numero oggetto 2: " + str(match[4] / num))
+        print("Tipo oggetto 3: " + str(match[5] / num))
+        print("Numero oggetto 3: " + str(match[6] / num))
+        print("Tipo oggetto 4: " + str(match[7] / num))
+        print("Numero oggetto 4: " + str(match[8] / num))
+
+
+
