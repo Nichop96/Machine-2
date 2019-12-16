@@ -65,6 +65,7 @@ if __name__ == '__main__':
         test_x, test_y = neuralNet.split(test)
         res_y = model.predict(test_x)
         l = []
+        k = 0
         for i in range(len(res_y[0])):
             pred = np.array([])
             correct = np.array([])
@@ -74,6 +75,8 @@ if __name__ == '__main__':
             tmp = np.zeros((2, len(pred)))
             tmp[0][:] = pred[:]
             tmp[1][:] = correct[:]
+            if np.array_equal(oneHot.approximate(tmp[0][:10]), tmp[1][:10]):
+                k += 1
             l.append(tmp)
         print('fine')
         for i in range(len(res_y[0])):
@@ -85,3 +88,4 @@ if __name__ == '__main__':
             print(oneHot.oneHotActionToVect(pred, apn_list, cit_list, obj_list, loc_list, tru_list))
             print(oneHot.oneHotActionToVect(correct, apn_list, cit_list, obj_list, loc_list, tru_list))
             print('----------------------------------------------------------------------------------')
+        print((k/len(l)*100))
